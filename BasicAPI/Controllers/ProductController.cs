@@ -26,6 +26,7 @@ namespace BasicAPI.Controllers
         }
 
         [HttpGet("urunler/{id}")]
+       
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
 
@@ -42,6 +43,7 @@ namespace BasicAPI.Controllers
 
 
         [HttpPost("urunler")]
+        [ServiceFilter(typeof(CustomAuthFilter))]
         public async Task<ActionResult> PostProduct(Product product)
         {
 

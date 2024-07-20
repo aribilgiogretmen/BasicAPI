@@ -12,7 +12,7 @@
 
         public async Task InvokeAsync(HttpContext context)
         {
-            if (!context.Request.Headers.TryGetValue(API_KEY, out var extractApiKey))
+            if (!context.Request.Headers.TryGetValue("X-API-KEY", out var extractApiKey))
             {
                 context.Response.StatusCode = 401;
                 await context.Response.WriteAsync("API Key Bulunamadı");
