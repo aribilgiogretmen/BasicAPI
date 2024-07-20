@@ -43,7 +43,7 @@ namespace BasicAPI.Controllers
 
 
         [HttpPost("urunler")]
-        [ServiceFilter(typeof(CustomAuthFilter))]
+        //[ServiceFilter(typeof(CustomAuthFilter))]
         public async Task<ActionResult> PostProduct(Product product)
         {
 

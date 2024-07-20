@@ -16,7 +16,7 @@ options.UseSqlServer(
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<CustomAuthFilter>();
+//builder.Services.AddScoped<CustomAuthFilter>();
 
 
 var app = builder.Build();
@@ -39,7 +39,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.UseMiddleware<AuthMiddleware>();
+app.UseMiddleware<AuthMiddleware>();
 
 app.UseStaticFiles();
 
