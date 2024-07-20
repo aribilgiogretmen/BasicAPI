@@ -1,3 +1,4 @@
+using BasicAPI;
 using BasicAPI.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,6 +35,9 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<AuthMiddleware>();
+
 app.UseStaticFiles();
 
 app.UseRouting();
