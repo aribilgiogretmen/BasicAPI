@@ -1,8 +1,15 @@
 using BasicAPI;
 using BasicAPI.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers().AddNewtonsoftJson();
+
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -17,6 +24,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //builder.Services.AddScoped<CustomAuthFilter>();
+builder.Services.AddHttpClient<ExchangeService>();
 
 
 var app = builder.Build();
@@ -39,7 +47,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseMiddleware<AuthMiddleware>();
+//app.UseMiddleware<AuthMiddleware>();
 
 app.UseStaticFiles();
 
