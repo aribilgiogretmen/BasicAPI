@@ -18,11 +18,19 @@ namespace BasicAPI.Controllers
         }
 
         [HttpGet]
-        public  async Task<IActionResult> GetExchangeRates()
+        public  async Task<IActionResult> GetPost()
         {
 
-            JObject exchangeRate = await _exchangeService.GetExchangeServiceAsync();
-            return Ok(exchangeRate);
+            var post = await _exchangeService.GetPost();
+            return Ok(post);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SavePost()
+        {
+
+            await _exchangeService.SavePost();
+            return Ok(new {Message="Kayıt Başarılı"});
         }
     }
 }
