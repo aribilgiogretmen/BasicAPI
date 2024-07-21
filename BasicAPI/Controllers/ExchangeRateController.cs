@@ -10,10 +10,13 @@ namespace BasicAPI.Controllers
     {
 
         private readonly ExchangeService _exchangeService;
+        private readonly ILogger<ExchangeRateController> _logger;
 
-        public ExchangeRateController(ExchangeService exchangeService)
+
+        public ExchangeRateController(ExchangeService exchangeService,ILogger<ExchangeRateController>logger)
         {
             _exchangeService = exchangeService;
+            _logger = logger;
 
         }
 
@@ -23,14 +26,24 @@ namespace BasicAPI.Controllers
 
             var post = await _exchangeService.GetPost();
             return Ok(post);
+            _logger.LogInformation("Get İşlemi Başarıyla Sağlandı");
         }
 
         [HttpPost]
         public async Task<IActionResult> SavePost()
         {
+            try
+            {
+                await _exchangeService.SavePost();
+                _logger.LogInformation("Get İşlemi Başarıyla Sağlandı");
+            }
+            catch (Exception ex)
+            {
 
-            await _exchangeService.SavePost();
-            return Ok(new {Message="Kayıt Başarılı"});
+                _logger.LogError("Hata bilmiorum", ex);
+            }
+            return Ok(new { Message = "Kayıt Başarılı" });
+
         }
     }
 }
